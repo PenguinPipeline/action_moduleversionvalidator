@@ -5,6 +5,7 @@ WORKDIR /app
 COPY main.py /app/main.py
 COPY requirements.txt /app/requirements.txt
 COPY test_files/vm.json /app/test.json
+COPY clitools/terraform-config-inspect /clitools
 
 RUN apt-get update
 RUN apt-get upgrade -y

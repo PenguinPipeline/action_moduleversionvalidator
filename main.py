@@ -75,10 +75,10 @@ def performVersionValidation(currentVersion, listOfVersions):
     return {"isVersionAvailableInRegistry": versionAvailable, "isUsingLatestVersion": statusVersionIsLatest}
 
 def generateModuleGraph(folder):
-    os.system('./clitools/terraform-config-inspect --json {folder} > temp.json'.format(folder=folder))
+    os.system('/clitools/terraform-config-inspect --json {folder} > temp.json'.format(folder=folder))
 
 # Generate the module graph
-graph = generateModuleGraph('/workspace/Rockhopper/terraform-azurerm-vm')
+graph = generateModuleGraph(os.environ.get('GITHUB_WORKSPACE'))
 
 # Create a dictionary of the module versions
 moduleReferences = extractModulesFromFile()

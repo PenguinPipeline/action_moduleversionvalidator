@@ -117,7 +117,7 @@ for x in moduleReferences:
     currentVersion = moduleReferences[x]
 
     # Grab a list of available version
-    listOfVersions = fetchModuleRegistryVersions(x, "w4g1zT3IuAJmwQ.atlasv1.p23J7UXOScgLehwQHJWdg1veybUBbJ2WLiZB59gmLR0HByoOqlHcQlfb056fCq0Laik")
+    listOfVersions = fetchModuleRegistryVersions(x, "")
 
     # Generate a dictionary of status flags
     versionValidationStatuses = performVersionValidation(currentVersion, listOfVersions)

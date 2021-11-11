@@ -6,7 +6,12 @@ import requests
 from packaging.version import parse
 import pprintpp
 
-usingLatestForAllDepenencies = True
+statusVersionIsLatest = True
+statusVersionAvailable = False
+
+checkForLatest = os.environ.get('INPUT_check-for-latest')
+checkForAvailable = os.environ.get('INPUT_check-for-available')
+
 
 # read module path
 # query module on TFE
@@ -59,27 +64,28 @@ def fetchModuleRegistryVersions(path, tfeBearerToken):
 def performVersionValidation(currentVersion, listOfVersions):
 
     # Track the global status here
-    global usingLatestForAllDepenencies
+    global statusVersionIsLatest
+    global statusVersionAvailable
 
-    statusVersionAvailable = False
-    statusVersionIsLatest = False
     # Check if referenced version is available
     if currentVersion in listOfVersions:
-        versionAvailable = True
+        statusVersionAvailable = True
 
     # Convert the version number to a numeric
     latestVersion = parse("0.0.0")
 
-    for version in listOfVersions:
-        if parse(version) > latestVersion:
-            latestVersion = parse(version)
-    
-    if parse(currentVersion) == latestVersion:
-        statusVersionIsLatest = True
-    else:
-        usingLatestForAllDepenencies = False
+    if checkForLatest:
 
-    return {"isVersionAvailableInRegistry": versionAvailable, "isUsingLatestVersion": statusVersionIsLatest}
+        # Find the latest version
+        for version in listOfVersions:
+            if parse(version) > latestVersion:
+                latestVersion = parse(version)
+    
+        # Check if we're referencing the latest version
+        if parse(currentVersion) != latestVersion:
+            statusVersionIsLatest = False
+
+    return {"isVersionAvailableInRegistry": statusVersionAvailable, "isUsingLatestVersion": statusVersionIsLatest}
 
 def generateModuleGraph(folder):
     os.system('/clitools/terraform-config-inspect --json {folder} > temp.json'.format(folder=folder))
@@ -105,10 +111,13 @@ for x in moduleReferences:
 
 pprintpp.pprint(moduleReferences)
 
-if usingLatestForAllDepenencies is False:
+# Throw error if we're checking for availability and the module version isn't available
+if checkForAvailable and statusVersionAvailable is False:
     exit(1)
-else:
-    exit(0)
+
+# Throw error if we're checking for latest and the module version isn't the latest version
+if checkForLatest and statusVersionIsLatest is False:
+    exit(1)
 
 
 

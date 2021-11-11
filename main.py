@@ -12,6 +12,11 @@ statusVersionAvailable = False
 checkForLatest = os.environ.get('INPUT_check-for-latest')
 checkForAvailable = os.environ.get('INPUT_check-for-available')
 
+pprintpp.pprint("Check for latest: ")
+pprintpp.pprint(checkForLatest)
+
+pprintpp.pprint("Check for available: ")
+pprintpp.pprint(checkForAvailable)
 
 # read module path
 # query module on TFE

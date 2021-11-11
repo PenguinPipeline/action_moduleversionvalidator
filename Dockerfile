@@ -14,6 +14,7 @@ RUN apt install python3
 RUN apt install python3-pip -y
 
 RUN pip3 install -r requirements.txt
+RUN chmod +x /app/main.py
 
 ENV GOBIN /go/bin
 

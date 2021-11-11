@@ -12,7 +12,7 @@ statusVersionAvailable = False
 checkForLatest = os.environ.get('INPUT_check-for-latest')
 checkForAvailable = os.environ.get('INPUT_check-for-available')
 
-print(os.environ.keys())
+pprintpp.pprint(os.environ.keys())
 
 for x in os.environ:
     print(x)

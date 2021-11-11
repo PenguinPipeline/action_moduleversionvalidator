@@ -1,0 +1,289 @@
+{
+  "path": "/workspace/Rockhopper/terraform-azurerm-vm",
+  "variables": {
+    "ad_group_suffix": {
+      "name": "ad_group_suffix",
+      "description": "AD Group Suffix",
+      "default": "xxxxuhong",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 52
+      }
+    },
+    "address_prefix": {
+      "name": "address_prefix",
+      "default": "10.0.2.0/24",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 24
+      }
+    },
+    "azurerm_network_interface_name": {
+      "name": "azurerm_network_interface_name",
+      "default": "myNIC",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 40
+      }
+    },
+    "azurerm_network_security_group_name": {
+      "name": "azurerm_network_security_group_name",
+      "default": "myNetworkSecurityGroup",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 36
+      }
+    },
+    "azurerm_public_ip_allocation_method": {
+      "name": "azurerm_public_ip_allocation_method",
+      "default": "Dynamic",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 32
+      }
+    },
+    "azurerm_public_ip_name": {
+      "name": "azurerm_public_ip_name",
+      "default": "myPublicIP",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 28
+      }
+    },
+    "location": {
+      "name": "location",
+      "description": "The Azure location where all resources in this example should be created",
+      "default": "eastus",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 6
+      }
+    },
+    "resourceGroup": {
+      "name": "resourceGroup",
+      "description": "The Azure resource group where all resources in this example should be created",
+      "default": "TDrockhopper1",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 1
+      }
+    },
+    "tags": {
+      "name": "tags",
+      "type": "map(string)",
+      "default": {
+        "environment": "Terraform Demo"
+      },
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 11
+      }
+    },
+    "vm_name": {
+      "name": "vm_name",
+      "default": "myVM",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 44
+      }
+    },
+    "vm_size": {
+      "name": "vm_size",
+      "default": "Standard_DS1_v2",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 48
+      }
+    },
+    "vnetAddSpace": {
+      "name": "vnetAddSpace",
+      "default": "10.0.0.0/16",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 20
+      }
+    },
+    "vnetName": {
+      "name": "vnetName",
+      "default": "myVnet",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/variables.tf",
+        "line": 16
+      }
+    }
+  },
+  "outputs": {},
+  "required_providers": {
+    "azurerm": {
+      "version_constraints": [
+        "~\u003e2.0"
+      ]
+    },
+    "random": {},
+    "vault": {}
+  },
+  "provider_configs": {
+    "azurerm": {
+      "name": "azurerm"
+    },
+    "vault": {
+      "name": "vault"
+    }
+  },
+  "managed_resources": {
+    "azurerm_linux_virtual_machine.myterraformvm": {
+      "mode": "managed",
+      "type": "azurerm_linux_virtual_machine",
+      "name": "myterraformvm",
+      "provider": {
+        "name": "azurerm"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/main.tf",
+        "line": 110
+      }
+    },
+    "azurerm_network_interface.myterraformnic": {
+      "mode": "managed",
+      "type": "azurerm_network_interface",
+      "name": "myterraformnic",
+      "provider": {
+        "name": "azurerm"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/main.tf",
+        "line": 69
+      }
+    },
+    "azurerm_network_interface_security_group_association.example": {
+      "mode": "managed",
+      "type": "azurerm_network_interface_security_group_association",
+      "name": "example",
+      "provider": {
+        "name": "azurerm"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/main.tf",
+        "line": 87
+      }
+    },
+    "azurerm_network_security_group.myterraformnsg": {
+      "mode": "managed",
+      "type": "azurerm_network_security_group",
+      "name": "myterraformnsg",
+      "provider": {
+        "name": "azurerm"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/main.tf",
+        "line": 47
+      }
+    },
+    "azurerm_public_ip.myterraformpublicip": {
+      "mode": "managed",
+      "type": "azurerm_public_ip",
+      "name": "myterraformpublicip",
+      "provider": {
+        "name": "azurerm"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/main.tf",
+        "line": 38
+      }
+    },
+    "azurerm_resource_group.myterraformgroup": {
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "myterraformgroup",
+      "provider": {
+        "name": "azurerm"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/main.tf",
+        "line": 17
+      }
+    },
+    "azurerm_storage_account.mystorageaccount": {
+      "mode": "managed",
+      "type": "azurerm_storage_account",
+      "name": "mystorageaccount",
+      "provider": {
+        "name": "azurerm"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/main.tf",
+        "line": 101
+      }
+    },
+    "azurerm_subnet.myterraformsubnet": {
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "myterraformsubnet",
+      "provider": {
+        "name": "azurerm"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/main.tf",
+        "line": 31
+      }
+    },
+    "azurerm_virtual_network.myterraformnetwork": {
+      "mode": "managed",
+      "type": "azurerm_virtual_network",
+      "name": "myterraformnetwork",
+      "provider": {
+        "name": "azurerm"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/main.tf",
+        "line": 23
+      }
+    },
+    "random_id.randomId": {
+      "mode": "managed",
+      "type": "random_id",
+      "name": "randomId",
+      "provider": {
+        "name": "random"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/main.tf",
+        "line": 92
+      }
+    }
+  },
+  "data_resources": {},
+  "module_calls": {
+    "azureadgroup": {
+      "name": "azureadgroup",
+      "source": "tfe.pixelize.ca/Rockhopper/azureadgroup/azurerm",
+      "version": "1.0.0",
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/main.tf",
+        "line": 147
+      }
+    },
+    "setsecret": {
+      "name": "setsecret",
+      "source": "tfe.pixelize.ca/Rockhopper/setsecret/vault",
+      "version": "1.0.0",
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-vm/main.tf",
+        "line": 154
+      }
+    }
+  }
+}

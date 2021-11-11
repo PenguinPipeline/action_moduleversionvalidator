@@ -1,0 +1,215 @@
+{
+  "path": "/workspace/Rockhopper/terraform-azurerm-webapp",
+  "variables": {
+    "ad_group_suffix": {
+      "name": "ad_group_suffix",
+      "description": "AD Group Suffix",
+      "default": null,
+      "required": true,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/variables.tf",
+        "line": 23
+      }
+    },
+    "app_name": {
+      "name": "app_name",
+      "description": "The Application Name",
+      "default": null,
+      "required": true,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/variables.tf",
+        "line": 47
+      }
+    },
+    "app_type": {
+      "name": "app_type",
+      "description": "The appliction type: Java or nodejs",
+      "default": null,
+      "required": true,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/variables.tf",
+        "line": 51
+      }
+    },
+    "env": {
+      "name": "env",
+      "description": "The environment in which to run this.",
+      "default": null,
+      "required": true,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/variables.tf",
+        "line": 31
+      }
+    },
+    "java_container_version": {
+      "name": "java_container_version",
+      "description": "java container version to run",
+      "default": "9.0",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/variables.tf",
+        "line": 18
+      }
+    },
+    "java_version": {
+      "name": "java_version",
+      "description": "Java version to run",
+      "default": "1.8",
+      "required": false,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/variables.tf",
+        "line": 13
+      }
+    },
+    "lob": {
+      "name": "lob",
+      "description": "line of business for this project",
+      "default": null,
+      "required": true,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/variables.tf",
+        "line": 35
+      }
+    },
+    "location": {
+      "name": "location",
+      "description": "The Azure location where all resources in this example should be created",
+      "default": null,
+      "required": true,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/variables.tf",
+        "line": 9
+      }
+    },
+    "malcode": {
+      "name": "malcode",
+      "description": "The malcode for this project",
+      "default": null,
+      "required": true,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/variables.tf",
+        "line": 39
+      }
+    },
+    "prefix": {
+      "name": "prefix",
+      "description": "The prefix used for all resources in this example",
+      "default": null,
+      "required": true,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/variables.tf",
+        "line": 1
+      }
+    },
+    "project": {
+      "name": "project",
+      "description": "The project name",
+      "default": null,
+      "required": true,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/variables.tf",
+        "line": 43
+      }
+    },
+    "tags": {
+      "name": "tags",
+      "type": "map(string)",
+      "default": null,
+      "required": true,
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/variables.tf",
+        "line": 27
+      }
+    }
+  },
+  "outputs": {
+    "app_service_default_hostname": {
+      "name": "app_service_default_hostname",
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/outputs.tf",
+        "line": 5
+      }
+    },
+    "app_service_name": {
+      "name": "app_service_name",
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/outputs.tf",
+        "line": 1
+      }
+    },
+    "principalId": {
+      "name": "principalId",
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/outputs.tf",
+        "line": 9
+      }
+    }
+  },
+  "required_providers": {
+    "azurerm": {
+      "version_constraints": [
+        "=2.4.0"
+      ]
+    },
+    "vault": {}
+  },
+  "provider_configs": {
+    "azurerm": {
+      "name": "azurerm"
+    },
+    "vault.credentials": {
+      "name": "vault",
+      "alias": "credentials"
+    }
+  },
+  "managed_resources": {
+    "azurerm_app_service.main": {
+      "mode": "managed",
+      "type": "azurerm_app_service",
+      "name": "main",
+      "provider": {
+        "name": "azurerm"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/main.tf",
+        "line": 71
+      }
+    },
+    "azurerm_app_service_plan.main": {
+      "mode": "managed",
+      "type": "azurerm_app_service_plan",
+      "name": "main",
+      "provider": {
+        "name": "azurerm"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/main.tf",
+        "line": 57
+      }
+    },
+    "azurerm_resource_group.main": {
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "main",
+      "provider": {
+        "name": "azurerm"
+      },
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/main.tf",
+        "line": 52
+      }
+    }
+  },
+  "data_resources": {},
+  "module_calls": {
+    "setsecret": {
+      "name": "setsecret",
+      "source": "tfe.pixelize.ca/Rockhopper/setsecret/vault",
+      "version": "1.0.0",
+      "pos": {
+        "filename": "/workspace/Rockhopper/terraform-azurerm-webapp/main.tf",
+        "line": 98
+      }
+    }
+  }
+}

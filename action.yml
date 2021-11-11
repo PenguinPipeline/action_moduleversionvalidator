@@ -1,0 +1,12 @@
+# action.yml
+name: 'Module Version Validator'
+description: 'Performs status checks of the modules referenced' 
+outputs:
+  is_using_latest_version: # id of output
+    description: 'If the module is referencing the latest versions of all dependant modules'
+  is_dependant_module_missing: # id of output
+    description: 'If this module is referencing a version of a module that is not available on the registry'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  

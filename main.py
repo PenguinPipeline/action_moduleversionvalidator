@@ -101,7 +101,7 @@ def performVersionValidation(currentVersion, listOfVersions):
     if currentVersionObject != latestVersion:
         statusVersionIsLatest = False
 
-    return {"isVersionAvailableInRegistry": statusVersionAvailable, "isUsingLatestVersion": statusVersionIsLatest}
+    return {"isVersionAvailableInRegistry": localStatusVerison, "isUsingLatestVersion": statusVersionIsLatest}
 
 def generateModuleGraph(folder):
     os.system('/clitools/terraform-config-inspect --json {folder} > temp.json'.format(folder=folder))

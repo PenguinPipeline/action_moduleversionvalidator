@@ -7,7 +7,7 @@ from packaging.version import parse
 import pprintpp
 
 statusVersionIsLatest = True
-statusVersionAvailable = False
+allVersionsAvailable = True
 
 checkForLatest = os.environ.get('INPUT_CHECK-FOR-LATEST').upper() == 'TRUE'
 checkForAvailable = os.environ.get('INPUT_CHECK-FOR-AVAILABLE').upper() == 'TRUE'
@@ -71,7 +71,7 @@ def performVersionValidation(currentVersion, listOfVersions):
 
     # Track the global status here
     global statusVersionIsLatest
-    global statusVersionAvailable
+    global allVersionsAvailable
 
     # # Check if referenced version is available
     # if currentVersion in listOfVersions:
@@ -83,6 +83,7 @@ def performVersionValidation(currentVersion, listOfVersions):
     
     currentVersionObject = parse(currentVersion)
 
+    localStatusVerison = False
     # Find the latest version
     for version in listOfVersions:
         versionObject = parse(version)
@@ -91,7 +92,10 @@ def performVersionValidation(currentVersion, listOfVersions):
             latestVersion = versionObject
         
         if currentVersionObject == versionObject:
-            statusVersionAvailable = True
+            localStatusVerison = True
+
+    if localStatusVerison == False:
+        allVersionsAvailable = False
 
     # Check if we're referencing the latest version
     if currentVersionObject != latestVersion:
@@ -124,7 +128,7 @@ for x in moduleReferences:
 pprintpp.pprint(moduleReferences)
 
 # Throw error if we're checking for availability and the module version isn't available
-if checkForAvailable and statusVersionAvailable is False:
+if checkForAvailable and allVersionsAvailable is False:
     exit(1)
 
 # Throw error if we're checking for latest and the module version isn't the latest version

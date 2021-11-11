@@ -9,8 +9,8 @@ import pprintpp
 statusVersionIsLatest = True
 statusVersionAvailable = False
 
-checkForLatest = os.environ.get('INPUT_check-for-latest')
-checkForAvailable = os.environ.get('INPUT_check-for-available')
+checkForLatest = os.environ.get('INPUT_CHECK-FOR-LATEST')
+checkForAvailable = os.environ.get('INPUT_CHECK-FOR-AVAILABLE')
 
 pprintpp.pprint(os.environ.keys())
 

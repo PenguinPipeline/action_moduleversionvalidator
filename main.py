@@ -77,23 +77,29 @@ def performVersionValidation(currentVersion, listOfVersions):
     global statusVersionIsLatest
     global statusVersionAvailable
 
-    # Check if referenced version is available
-    if currentVersion in listOfVersions:
-        statusVersionAvailable = True
+    # # Check if referenced version is available
+    # if currentVersion in listOfVersions:
+    #     statusVersionAvailable = True
 
     # Convert the version number to a numeric
     latestVersion = parse("0.0.0")
 
-    if checkForLatest:
-
-        # Find the latest version
-        for version in listOfVersions:
-            if parse(version) > latestVersion:
-                latestVersion = parse(version)
     
-        # Check if we're referencing the latest version
-        if parse(currentVersion) != latestVersion:
-            statusVersionIsLatest = False
+    currentVersionObject = parse(currentVersion)
+
+    # Find the latest version
+    for version in listOfVersions:
+        versionObject = parse(version)
+
+        if  versionObject > latestVersion:
+            latestVersion = versionObject
+        
+        if currentVersionObject == versionObject:
+            statusVersionAvailable = True
+
+    # Check if we're referencing the latest version
+    if currentVersionObject != latestVersion:
+        statusVersionIsLatest = False
 
     return {"isVersionAvailableInRegistry": statusVersionAvailable, "isUsingLatestVersion": statusVersionIsLatest}
 

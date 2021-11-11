@@ -6,6 +6,7 @@ import requests
 from packaging.version import parse
 import pprintpp
 
+usingLatestForAllDepenencies = True
 
 # read module path
 # query module on TFE
@@ -57,6 +58,8 @@ def fetchModuleRegistryVersions(path, tfeBearerToken):
 
 def performVersionValidation(currentVersion, listOfVersions):
 
+    # Track the global status here
+    global usingLatestForAllDepenencies
 
     statusVersionAvailable = False
     statusVersionIsLatest = False
@@ -73,6 +76,8 @@ def performVersionValidation(currentVersion, listOfVersions):
     
     if parse(currentVersion) == latestVersion:
         statusVersionIsLatest = True
+    else:
+        usingLatestForAllDepenencies = False
 
     return {"isVersionAvailableInRegistry": versionAvailable, "isUsingLatestVersion": statusVersionIsLatest}
 
@@ -99,6 +104,11 @@ for x in moduleReferences:
     moduleReferences[x] = newDict
 
 pprintpp.pprint(moduleReferences)
+
+if usingLatestForAllDepenencies is False:
+    exit(1)
+else:
+    exit(0)
 
 
 

@@ -6,6 +6,11 @@ import requests
 from packaging.version import parse
 import pprintpp
 
+totalModulesReferenced = 0
+totalModulesUsingLatestVersion = 0
+totalModulesWithDependenciesAvailable = 0
+
+
 statusVersionIsLatest = True
 allVersionsAvailable = True
 
@@ -68,14 +73,15 @@ def performVersionValidation(currentVersion, listOfVersions):
     # Track the global status here
     global statusVersionIsLatest
     global allVersionsAvailable
+    global totalModulesUsingLatestVersion
+    global totalModulesWithDependenciesAvailable
+    global totalModulesReferenced
 
-    # # Check if referenced version is available
-    # if currentVersion in listOfVersions:
-    #     statusVersionAvailable = True
+    totalModulesReferenced += 1
+
 
     # Convert the version number to a numeric
     latestVersion = parse("0.0.0")
-
     
     currentVersionObject = parse(currentVersion)
 
@@ -89,6 +95,8 @@ def performVersionValidation(currentVersion, listOfVersions):
         
         if currentVersionObject == versionObject:
             localStatusVerison = True
+            totalModulesWithDependenciesAvailable += 1
+
 
     if localStatusVerison == False:
         allVersionsAvailable = False
@@ -96,6 +104,8 @@ def performVersionValidation(currentVersion, listOfVersions):
     # Check if we're referencing the latest version
     if currentVersionObject != latestVersion:
         statusVersionIsLatest = False
+    else:
+        totalModulesUsingLatestVersion += 1
 
     return {"isVersionAvailableInRegistry": localStatusVerison, "isUsingLatestVersion": statusVersionIsLatest}
 
@@ -121,6 +131,13 @@ for x in moduleReferences:
     newDict = {"currentVersion": currentVersion, "registryVersions": listOfVersions, "statusFlags": versionValidationStatuses}
     moduleReferences[x] = newDict
 
+pprintpp.pprint("==== Summary ====")
+pprintpp.pprint("Number of modules Referenced: " + str(totalModulesReferenced))
+pprintpp.pprint("Number of modules Missing Dependencies: " + str(totalModulesReferenced - totalModulesWithDependenciesAvailable))
+pprintpp.pprint("Number of modules not using latest version: " + str(totalModulesReferenced - totalModulesUsingLatestVersion))
+
+pprintpp.pprint("")
+pprintpp.pprint("==== Detailed Breakdown ====")
 pprintpp.pprint(moduleReferences)
 
 # Throw error if we're checking for availability and the module version isn't available

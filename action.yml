@@ -10,11 +10,15 @@ inputs:
     description: 'Checks if the module is using the latest dependencies'
     required: true
     default: false
+  tfe-token:
+    description: 'Bearer token to authenticate to TFE'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.check-for-available }}
     - ${{ inputs.check-for-latest }}
+    - ${{ inputs.tfe-token}}
 
   

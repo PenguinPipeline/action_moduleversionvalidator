@@ -11,13 +11,9 @@ allVersionsAvailable = True
 
 checkForLatest = os.environ.get('INPUT_CHECK-FOR-LATEST').upper() == 'TRUE'
 checkForAvailable = os.environ.get('INPUT_CHECK-FOR-AVAILABLE').upper() == 'TRUE'
+tfeToken = os.environ.get('INPUT_TFE-TOKEN')
 
 
-pprintpp.pprint("Check for latest: ")
-pprintpp.pprint(checkForLatest)
-
-pprintpp.pprint("Check for available: ")
-pprintpp.pprint(checkForAvailable)
 
 # read module path
 # query module on TFE
@@ -117,7 +113,7 @@ for x in moduleReferences:
     currentVersion = moduleReferences[x]
 
     # Grab a list of available version
-    listOfVersions = fetchModuleRegistryVersions(x, "")
+    listOfVersions = fetchModuleRegistryVersions(x, tfeToken)
 
     # Generate a dictionary of status flags
     versionValidationStatuses = performVersionValidation(currentVersion, listOfVersions)
